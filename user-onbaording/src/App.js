@@ -71,7 +71,7 @@ function App() {
       change={inputChange}
       submit={formSubmit}
       disabled={disabled}
-      // errors={formErrors} 
+      errors={formErrors} 
      
       />
 

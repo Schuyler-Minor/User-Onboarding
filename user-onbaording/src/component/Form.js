@@ -16,8 +16,9 @@ export default function Form (props) {
     }   
 
     const onChange = evt => {
-        const { name, value } = evt.target
-        change( name, value)
+        const { name, value, checked, type } = evt.target
+        const valueToUse = type ==='checkbox' ? checked : value;
+        change( name, valueToUse)
     };
 
     return (
@@ -28,7 +29,10 @@ export default function Form (props) {
                 <button>submit</button>
 
                 <div className='errors'>
-                   <div>{errors}</div>
+                <div>{errors.name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.tos}</div>
 
                 </div>
             </div>
@@ -50,7 +54,7 @@ export default function Form (props) {
                     value={values.email}
                     onChange={onChange}
                     name='email'
-                    type='text'
+                    type='email'
                     />
                 </label>
 
@@ -59,7 +63,8 @@ export default function Form (props) {
                     value={values.password}
                     onChange={onChange}
                     name='password'
-                    type='text'
+                    type='password'
+                    minLength='8' required
                     />
                 </label>
 
@@ -68,7 +73,7 @@ export default function Form (props) {
                         <input 
                         type='checkbox'
                         name='tos'
-                        checked={values}
+                        checked={values.tos}
                         onChange={onChange}
                         />
                     </label>
