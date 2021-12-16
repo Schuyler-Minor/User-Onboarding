@@ -5,6 +5,8 @@ import React, { useState, useEffect} from 'react'
 import * as yup from 'yup';
 import axios from 'axios';
 
+import schema from './validation/formSchema';
+
 const initialFormValues = {
   name: '',
   email: '',
@@ -29,7 +31,11 @@ function App() {
   const [disabled, setDisabled] = useState(initialDisabled)
 
   const getUsers = () => {
-
+      axios.get('https://reqres.in/api/users/2')
+      .then(resp => {
+        setUsers(resp.data)
+      }).catch(err => console.error(err))
+      .finally(() => setFormValues(initialFormValues))
 
   }
 
